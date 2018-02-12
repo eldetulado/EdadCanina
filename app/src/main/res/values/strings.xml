@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Mi Edad Caninna</string>
+    <string name="info">Escribe tu edad y pulsa el boton para calcular tu edad canina</string>
+    <string name="edad">Edad</string>
+    <string name="pulsame">pulsame</string>
+    <string name="anios">años</string>
+    <string name="alerta">Llena el campo</string>
+
+</resources>
