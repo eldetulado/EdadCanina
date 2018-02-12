@@ -16,54 +16,29 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         if (savedInstanceState != null){
-            calcularTotal()
+            res = savedInstanceState.getInt("DATO")
+            calcularTotal(res)
         }
-
-        Toast.makeText(this,"onCreate",Toast.LENGTH_SHORT).show();
-
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Toast.makeText(this,"onPause",Toast.LENGTH_SHORT).show();
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Toast.makeText(this,"onStop",Toast.LENGTH_SHORT).show();
     }
 
     override fun onResume() {
         super.onResume()
-        accion.setOnClickListener {
-            calcularTotal()
+        accion.setOnClickListener{
+            if (edad.text.isNotEmpty()) {
+                res = edad.text.toString().toInt() * 4
+                calcularTotal(res)
+            }else
+                Toast.makeText(this, resources.getText(R.string.alerta), Toast.LENGTH_SHORT).show()
         }
     }
 
-    override fun onRestart() {
-        super.onRestart()
-        Toast.makeText(this,"onRestart",Toast.LENGTH_SHORT).show();
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Toast.makeText(this,"onDestroy",Toast.LENGTH_SHORT).show();
-    }
-
-    private fun calcularTotal() {
-        if (edad.text.isNotEmpty()) {
-            res = edad.text.toString().toInt() * 4
-            resultado.text = res.toString()
-            textView5.visibility = View.VISIBLE
-        }
-        /*else
-            Toast.makeText(this, resources.getText(R.string.alerta), Toast.LENGTH_SHORT).show()*/
+    private fun calcularTotal(res: Int) {
+        resultado.text = res.toString()
+        textView5.visibility = View.VISIBLE
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putInt("DATO",res)
-        Log.e("ERROR",res.toString())
-        Toast.makeText(this,"onSaveInstanceState",Toast.LENGTH_SHORT).show();
     }
 }
